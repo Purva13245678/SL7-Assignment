@@ -1,0 +1,47 @@
+<div mat-dialog-title class="dialog-header">
+  <div class="title-content">
+    <mat-icon>history</mat-icon>
+    <h2>Project History</h2>
+  </div>
+  <div class="project-info">
+    <h3>{{ project.name }}</h3>
+    <p>{{ project.owner }}</p>
+  </div>
+</div>
+
+<mat-dialog-content class="dialog-content">
+  <div class="history-container" *ngIf="sortedHistory.length > 0; else noHistory">
+    <div class="history-item" *ngFor="let entry of sortedHistory; let last = last">
+      <div class="timeline-marker">
+        <mat-icon [class]="'event-icon ' + getEventColor(entry.eventType)">
+          {{ getEventIcon(entry.eventType) }}
+        </mat-icon>
+        <div class="timeline-line" *ngIf="!last"></div>
+      </div>
+      
+      <div class="history-details">
+        <div class="event-header">
+          <span class="event-type">{{ entry.eventType }}</span>
+          <span class="event-timestamp">
+            {{ entry.timestamp | date:'MMM dd, yyyy HH:mm' }}
+          </span>
+        </div>
+        <div class="event-notes">
+          {{ entry.notes }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noHistory>
+    <div class="no-history">
+      <mat-icon>event_busy</mat-icon>
+      <h3>No history available</h3>
+      <p>This project doesn't have any recorded history yet.</p>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions>

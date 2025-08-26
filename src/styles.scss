@@ -1,0 +1,117 @@
+// /* You can add global styles to this file, and also import other style files */
+
+// html, body { 
+//   height: 100%; 
+// }
+
+// body { 
+//   margin: 0; 
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+//   background-color: #ffffff;
+//   color: #333;
+//   transition: background-color 0.3s ease, color 0.3s ease;
+// }
+
+// * {
+//   box-sizing: border-box;
+// }
+
+
+
+// // Light and dark mode CSS custom properties
+// :root {
+//   // Light mode colors
+//   --background-color: #f8f9fa;
+//   --surface-color: #ffffff;
+//   --text-primary: #333333;
+//   --text-secondary: #666666;
+//   --border-color: #e9ecef;
+//   --hover-color: #f8f9fa;
+  
+//   // Status badge colors - light mode
+//   --status-active-bg: #e8f5e8;
+//   --status-active-text: #2e7d32;
+//   --status-active-border: #4caf50;
+//   --status-active-icon: #4caf50;
+  
+//   --status-completed-bg: #e3f2fd;
+//   --status-completed-text: #1565c0;
+//   --status-completed-border: #2196f3;
+//   --status-completed-icon: #2196f3;
+  
+//   --status-on-hold-bg: #fff3e0;
+//   --status-on-hold-text: #ef6c00;
+//   --status-on-hold-border: #ff9800;
+//   --status-on-hold-icon: #ff9800;
+// }
+
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     // Dark mode colors
+//     --background-color: #121212;
+//     --surface-color: #1e1e1e;
+//     --text-primary: #e0e0e0;
+//     --text-secondary: #b0b0b0;
+//     --border-color: #333333;
+//     --hover-color: #2a2a2a;
+    
+//     // Status badge colors - dark mode (enhanced visibility)
+//     --status-active-bg: rgba(76, 175, 80, 0.2);
+//     --status-active-text: #81c784;
+//     --status-active-border: #4caf50;
+//     --status-active-icon: #81c784;
+    
+//     --status-completed-bg: rgba(33, 150, 243, 0.2);
+//     --status-completed-text: #64b5f6;
+//     --status-completed-border: #2196f3;
+//     --status-completed-icon: #64b5f6;
+    
+//     --status-on-hold-bg: rgba(255, 152, 0, 0.2);
+//     --status-on-hold-text: #ffb74d;
+//     --status-on-hold-border: #ff9800;
+//     --status-on-hold-icon: #ffb74d;
+//   }
+// }
+/* Global styles */
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Light mode CSS variables */
+:root {
+  /* Background and text colors */
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-color: #e9ecef;
+  --hover-color: #f1f3f5;
+
+  /* Status badge colors - light mode */
+  --status-active-bg: #e8f5e8;
+  --status-active-text: #2e7d32;
+  --status-active-border: #4caf50;
+  --status-active-icon: #4caf50;
+
+  --status-completed-bg: #e3f2fd;
+  --status-completed-text: #1565c0;
+  --status-completed-border: #2196f3;
+  --status-completed-icon: #2196f3;
+
+  --status-on-hold-bg: #fff3e0;
+  --status-on-hold-text: #ef6c00;
+  --status-on-hold-border: #ff9800;
+  --status-on-hold-icon: #ff9800;
+}

@@ -1,0 +1,111 @@
+<div class="project-dashboard">
+  <div class="dashboard-header">
+    <h1>Project Dashboard</h1>
+    
+    <div class="filters-section">
+      <mat-form-field appearance="outline">
+        <mat-label>Search projects</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" placeholder="Search by name or owner">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Filter by status</mat-label>
+        <mat-select [(value)]="statusFilter" (selectionChange)="onStatusFilterChange()">
+          <mat-option value="">All Statuses</mat-option>
+          <mat-option value="Active">Active</mat-option>
+          <mat-option value="On Hold">On Hold</mat-option>
+          <mat-option value="Completed">Completed</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Sort by</mat-label>
+        <mat-select [(value)]="sortBy" (selectionChange)="onSortChange()">
+          <mat-option value="startDate">Start Date</mat-option>
+          <mat-option value="name">Name</mat-option>
+          <mat-option value="status">Status</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="project-list">
+    <div class="project-item" *ngFor="let project of filteredProjects">
+      <div class="project-header" (click)="toggleExpansion(project)">
+        <mat-icon class="expand-icon" [class.expanded]="project.expanded">
+          keyboard_arrow_right
+        </mat-icon>
+        
+        <div class="project-basic-info">
+          <div class="project-name">{{ project.name }}</div>
+          <div class="project-owner">{{ project.owner }}</div>
+        </div>
+        
+        <div class="project-status">
+          <span class="status-badge" [class]="getStatusClass(project.status)">
+            <mat-icon class="status-icon">{{ getStatusIcon(project.status) }}</mat-icon>
+            {{ project.status }}
+          </span>
+        </div>
+        
+        <div class="project-start-date">
+          {{ project.startDate | date:'MMM dd, yyyy' }}
+        </div>
+        
+        <div class="project-actions">
+          <button mat-stroked-button class="history-button" (click)="openHistoryModal(project); $event.stopPropagation()">
+            <mat-icon class="history-icon">history</mat-icon>
+            View History
+          </button>
+          <button mat-raised-button color="primary" (click)="openEditModal(project); $event.stopPropagation()">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+        </div>
+      </div>
+      
+      <div class="project-details" [class.expanded]="project.expanded">
+        <div class="details-content">
+          <div class="project-description">
+            <h4>Description</h4>
+            <p>{{ project.description }}</p>
+          </div>
+          
+          <div class="project-tags">
+            <h4>Tags</h4>
+            <mat-chip-set>
+              <mat-chip *ngFor="let tag of project.tags">{{ tag }}</mat-chip>
+            </mat-chip-set>
+          </div>
+          
+          <div class="team-members">
+            <h4>Team Members</h4>
+            <div class="members-list">
+              <div class="member" *ngFor="let member of project.teamMembers">
+                <mat-icon class="member-icon">person</mat-icon>
+                <span class="member-name">{{ member.name }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-progress">
+            <h4>Progress ({{ project.progress }}%)</h4>
+            <mat-progress-bar mode="determinate" [value]="project.progress"></mat-progress-bar>
+          </div>
+          
+          <div class="last-updated">
+            <h4>Last Updated</h4>
+            <p>{{ project.lastUpdated | date:'MMM dd, yyyy HH:mm' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-projects" *ngIf="filteredProjects.length === 0">
+      <mat-icon>folder_open</mat-icon>
+      <h3>No projects found</h3>
+      <p>Try adjusting your search or filter criteria.</p>
+    </div>
+  </div>
+</div>
